@@ -1,0 +1,265 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{multicol}
+\usepackage{tabularx}
+\setlength{\tabcolsep}{3pt}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{mybox}
+
+\newcommand{\Mod}[1]{\ \hspace{0.2cm} (\mathrm{m\acute{o}d}\ #1)}
+
+
+\setlength\parindent{0pt}
+
+\newtheorem{definition}{Definición}
+\newtheorem{proposition}{Proposición}
+
+
+
+\setlength\parindent{0pt}
+
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+\date{Miércoles 13 de noviembre de 2019}
+\title{ \textbf{Teoría de números } \\
+Hoja de problemas 8}
+\author{Docente: Gabriel Chicas Reyes, MSc.\\ 
+				Alumno: Kevin López Aquino }
+\maketitle	
+
+\section*{ I. Ejercicios del libro}
+
+Los siguientes son ejercicios propuestos en el capítulo $2$, sección $8$ de \textit{An Introduction to the Theory of Numbers}, 5ta. edición, de Niven, Zuckerman y Montgomery. 
+\vspace{5mm}
+\begin{mybox}
+	\textbf{E5. } Sea $p$ un primo impar. Demuestre que $a$ pertenece al exponente $2$   módulo $p$ si y solo si $a \equiv -1 \Mod{p}.$
+\end{mybox}	
+
+$\bullet \hspace{0.3cm} (\Rightarrow)$ Supongamos que $a$ pertenece al exponente $2$ módulo $p$. Entonces
+$$ a^{2} \equiv 1 \Mod{p}, $$ 
+de forma que $p \mid (a - 1)(a + 1)$. Por el lema de Euclides, $p$ divide a $a -1$ o divide a $p + 1$. El primer caso no es posible, dado que contradiría la hipótesis que $a$ pertenece al exponente $2$. Por tanto,
+$$ a \equiv -1 \Mod{p}. $$ 
+$(\Leftarrow)$ Ahora supongamos que $ a \equiv -1 \Mod{p}. $ Elevando ambos lados al cudrado, notamos que
+$$a^2 \equiv 1 \Mod{p}. $$
+Puesto que $p \neq 2$, se sigue que 	$a \not \equiv 1 \Mod{p}$, de forma que $a$ pertenece al exponente $2$ módulo $p. \hspace{0.2cm} \blacksquare$ 
+
+\newpage
+
+\begin{mybox}
+	\textbf{E15. } Demuestre que si $a$ pertenece al exponente $h$ módulo un primo $p$ y $h$ es par, entonces 
+	$$ a^{h/2} \equiv -1  \Mod{p} .$$
+\end{mybox}	
+$\bullet $ Si $a^h \equiv 1 \Mod{p}$, se sigue que 
+$$ p \mid a^h - 1 = (a^{h/2})^2 - 1^2 = (a^{h/2} - 1)(a^{h/2} + 1). $$
+Usando el lema de Euclides, $p$ divide a $a^{h/2} - 1$ o a $a^{h/2} + 1$. Notamos que el primer caso no es posible, pues contradiría nuestra hipótesis que $a$ pertenece al exponente $h$ módulo $m$. Por tanto, $p$ divide a  $a^{h/2} + 1$. Luego,
+$$ a^{h/2} \equiv -1 \Mod{p}. \hspace{0.2cm} \blacksquare $$
+
+\begin{mybox}
+	\textbf{E22. } Sea $g$ una raíz primitiva módulo $p$. Demuestre que
+	$$ (p-1)! \equiv \prod_{k=1}^{p-1} g^{k} \equiv g^{\frac{p(p-1)}{2}} \Mod{p} .$$ 
+	Use este hecho para dar otra demostración de la congruencia de Wilson. 
+\end{mybox}	
+
+$\bullet$ Para cada $i$ tal que $1 \leq i \leq p -1 $, existe un $k$ tal que 
+$$ g^k \equiv i  \Mod{p},$$
+y $1 \leq k \leq p - 1.$ Luego, podemos decir que
+\begin{equation*}
+\begin{split}
+(p-1)!  &= 1 \cdot 2 \cdot \ldots \cdot (p-1)  \\
+& \equiv g \cdot g^2 \cdot \ldots \cdot g^{p-1}  \\
+& \equiv g^{1 + 2 + \ldots + (p-1)}  \\
+& \equiv g^{\frac{p(p-1)}{2}} \Mod{p}. \hspace{0.2cm} \blacksquare
+\end{split}
+\end{equation*}
+
+Con el resultado anterior, podemos dar otra demostración del teorema de Wilson, diferente a la demostración basada en la existencia de inversos multiplicativos. \\
+
+\textbf{Teorema de Wilson. } Para todo primo $p$, se tiene que $(p-1)! \equiv -1 \Mod{p}.$ 
+\begin{proof}
+	Si $p = 2$, la proposición se cumple. \\
+	Sea $p$ un primo impar.  Puesto que $p$ es primo, tenemos garantía de la existencia de al menos una raíz primitiva. Sea $g$ una raíz primitiva. Por el resultado anterior,
+	$$(p-1)! \equiv g^{\frac{p(p-1)}{2}} \equiv  \left( g^{\frac{p-1}{2}} \right)^p \equiv (-1)^{p} \equiv -1  \Mod{p}.$$
+	En lo anterior, usamos el resultado \textbf{ejercicio 15} de esta sección, junto con  el hecho que $g$ es raíz primitiva y que $p$ es impar. 
+\end{proof}
+\newpage
+
+\section*{ II. Orden módulo $m$}
+\vspace{7mm}
+\begin{mybox}
+	\textbf{3. } Sea $p \equiv 3 \Mod{4}$. Demuestre que no existen elementos de orden $4$ en $\left(\mathbb{Z}/ p \mathbb{Z} \right)^{\times}$.
+\end{mybox}	
+
+$\bullet$ Del hecho que $p \equiv 3 \Mod{4}$ deducimos que existe un entero $k$ tal que 
+$$p = 4k + 3.$$ Argumentamos por contradicción. Supongamos que existe un elemento de orden $4$. Entonces, $4 \mid \varphi(p) = p - 1 = 4k + 2$.  De esto se sigue que $4 \mid 4k + 2 - 4k = 2$, lo cual es absurdo. \\
+Por tanto, no pueden existir elementos de orden $4$ en  $\left(\mathbb{Z}/ p \mathbb{Z} \right)^{\times}. \hspace{0.2cm} \blacksquare$
+
+\vspace{7mm}
+
+\begin{mybox}
+	\textbf{6. } Sea $m$ un entero positivo. Suponga que existe un entero $a$ que satisface $\text{ord}_{m}(a) = m - 1.$ Demuestre que $m$ es primo. 
+\end{mybox}	
+
+$\bullet$ Demostramos que si $m$ es compuesto, no existe un entero $a$ que satisfaga $\text{ord}_{m}(a) = m - 1.$ Notamos que 
+$ \varphi(m) = m - 1$ si y solo si $m$ es primo. Además, si $m$ es compuesto, 
+$$ \varphi(m) < m - 1 .$$
+
+Luego, el máximo orden posible de un elemento módulo $m$ es $\varphi(m)$, por lo que no puede existir un entero $a$ cuyo orden sea $m - 1$ cuando $m$ es compuesto. $\hspace{0.2cm} \blacksquare$
+
+\vspace{7mm}
+\begin{mybox}
+	\textbf{7. } Suponga que 
+	\begin{equation*}
+	\begin{split}
+	a^r \equiv 1 \Mod{m} \\
+	a^s \equiv 1 \Mod{m}. 
+	\end{split}
+	\end{equation*}
+	\hspace{0.65cm}Demuestre que $a^{\text{mcd}(r, s)} \equiv 1 \Mod{m}.$
+\end{mybox}	
+
+$\bullet$ De la hipótesis deducimos que el orden de $a$ módulo $m$ divide tanto a $r$ como a $s$. Es decir, $\text{ord}_{m}(a)$ es un divisor común de $r$ y de $s$. Por tanto, se sigue que $\text{ord}_{m}(a) \mid \text{mcd}(r, s)$. Ya que $\text{mcd}(r, s)$ es un múltiplo del orden de $a$ módulo $m$, inferimos que
+$$a^{\text{mcd}(r, s)} \equiv 1 \Mod{m}. \hspace{0.2cm} \blacksquare$$
+
+\vspace{7mm}
+
+
+\begin{mybox}
+	\textbf{8. } Sea $p$ primo. Demuestre que si $a$ tiene orden $3$ módulo $p$, entonces 
+	$$ 1 + a + a^2 \equiv 0 \Mod{p} $$
+	y $1 + a$ tiene orden $6$ módulo $p$.
+\end{mybox}	
+$\bullet$ Usando la hipótesis, notamos que 
+$$a^{3} \equiv 1  \Mod{p} .$$
+De forma equivalente, 
+$$ a^{3} - 1 \equiv (a - 1)(a^2 + a + 1) \equiv 0 \Mod{p} .$$
+Esto quiere decir que $p$ divide al producto $(a - 1)(1 + a + a^2)$. Puesto que $p$ es primo, podemos deducir, en virtud del lema de Euclides, que $p$ divide a $a - 1$ o que $p$ divide a $1 + a + a^2$.\\
+Notamos que si $p$ divide a $a - 1$, se sigue que 
+$$ a \equiv 1 \Mod{p} $$
+lo que contradiría el hecho que el orden de $a$ módulo $p$ es $3$.  Por tanto, concluimos que $p$ divide a $1 + a + a^2$. Es decir,
+$$ 1 + a + a^2 \equiv 0 \Mod{p} .$$ \\
+$\bullet$ Primero demostramos que $(1 + a)^6 \equiv 1 \Mod{p}.$ Con tal fin, notemos que
+$$ (1 + a)^2 \equiv 1 + 2a + a^{2}  \equiv a \Mod{p} ,$$
+donde hemos usado el resultado de la parte anterior. Luego,
+$$ (1 + a)^6 \equiv (1 + a)^{2} (1 + a)^{2} (1 + a)^{2} \equiv a^{3} \equiv 1 \Mod{p}, $$
+porque el orden de $a$ módulo $p$ es $3$. \\
+
+En este punto, el orden de $1+a$ podría ser $6$ o algún divisor de $6$, a saber, $1, 2$ o $3$. Argumentamos por contradicción. Supongamos que el orden de $1+a$ no es $6$. \\
+
+\textit{Caso I. } Si el orden de $1 + a$ es $1$, esto implicaría que $a \equiv 0 \Mod{p},$ de forma que $a$ no tendría orden definido, contradiciendo nuestra hipótesis. Por tanto, este caso no es posible.  \\
+
+\textit{Caso II. } Si el orden de $1 + a$ es $2$, obtenemos que 
+$$ (1 + a)^2 \equiv a \equiv 1 \Mod{p}, $$
+por la parte anterior. Esto contradiría el hecho que $\text{ord}_{p}(a) = 3.$ Así, este caso tampoco es posible. 
+\newpage
+\textit{Caso III. } Ahora supongamos que el orden de $1 + a$ es $3$. Entonces, 
+\begin{equation*}
+\begin{split}
+(1 + a)^3 &\equiv 1 \Mod{p} \\
+a(1 + a) &\equiv 1 \Mod{p} \\
+a^2 + a & \equiv 1 \Mod{p} \\
+a^2 + a + 1 &\equiv 2 \Mod{p}.
+\end{split}
+\end{equation*}
+Por la parte anterior, podríamos deducir que $2 \equiv 0 \Mod{p}$, de forma que $ p = 2$. Pero, en vista que $\text{ord}_{p} (a) = 3$, esto es absurdo. Luego, este caso tampoco es posible.  \\
+
+Puesto que ninguno de los casos anteriores es posible, concluimos que $$\text{ord}_{p}(1 + a) = 6. \hspace{0.2cm} \blacksquare$$
+
+\vspace{7mm}
+
+\begin{mybox}
+	\textbf{10. } Sea $a$ un entero coprimo con $m$, cuyo inverso multiplicativo módulo $m$ es $b$. Demuestre que $ \text{ord}_{m}(a) = \text{ord}_{m}(b)$.
+\end{mybox}	
+
+$\bullet$ Sean $h := \text{ord}_{m}(a)$ y $\ell := \text{ord}_{m}(b).$  Entonces, 
+$$ b^h \equiv a^h b^h \equiv (ab)^h \equiv 1 \Mod{m} .$$
+De lo que deducimos que $\ell \mid h$. Además,
+$$ a^\ell \equiv b^\ell a^\ell \equiv (ba)^\ell \equiv 1 \Mod{m} ,$$
+de forma que $h \mid \ell$. Por tanto, $h = \ell$. \\
+
+\textbf{Corolario. } Si $a$ es una raíz primitiva módulo $m$, su inverso multiplicativo $b$ también lo es. $ \hspace{0.2cm} \blacksquare$
+
+\newpage 
+
+\section*{ III. Raíces primitivas}
+
+\vspace{7mm}
+
+\begin{mybox}
+	\textbf{13. } Si $p$ es impar y $\text{mcd}(k, p) = 1$, demuestre que $k^2$ no es raíz primitiva módulo $p$.
+\end{mybox}	
+
+$\bullet $ Por contradicción. Supongamos que $k^2$ es una raíz primitiva módulo $p$. Entonces, apelando al \textbf{ejercicio 15} de la sección I, se sigue que  
+$$ k^{p-1} = \left( k^2 \right)^{\frac{p-1}{2}} \equiv -1 \Mod{p}, $$
+lo cual contradiría el pequeño teorema de Fermat, dado que $p \neq 2$. Por tanto, concluimos que $k^2$ no puede ser una raíz primitiva módulo $p$ impar. $\hspace{0.2cm}\blacksquare$
+
+\vspace{7mm}
+
+\begin{mybox}
+	\textbf{15. } Sea $p$ impar. Demuestre que el producto de dos raíces primitivas módulo $p$ nunca es una raíz primitiva módulo $p$.
+\end{mybox}	
+$\bullet$ Sean $g$ y $h$ dos raíces primitivas módulo $p$, no necesariamente distintas. Por el resultado del \textbf{ejercicio 15} de la sección I, se sigue que 
+$$ g^{\frac{p-1}{2}}  \equiv -1 \Mod{p}$$
+$$ h^{\frac{p-1}{2}}  \equiv -1 \Mod{p},$$
+de forma que 
+$$ \left( gh \right)^{\frac{p-1}{2}} \equiv g^{\frac{p-1}{2}} h^{\frac{p-1}{2}} \equiv 1 \Mod{p}. $$
+Argumentamos por contradicción. Supongamos que $gh$ es una raíz primitiva módulo $p$. Entonces,
+$$ \left( gh \right)^{\frac{p-1}{2}} \equiv -1 \Mod{p}. $$
+Lo anterior implicaría que $-1 \equiv 1 \Mod{p}$, contradiciendo nuestra hipótesis que $p \neq 2.$ Por tanto, concluimos que $gh$ no puede ser una raíz primitiva módulo $p$ impar. $\hspace{0.2cm} \blacksquare$
+ 
+ \newpage
+ 
+\begin{mybox}
+	\textbf{21 (Generalización del teorema de Wilson). }  Supongamos que $m$ es $2, 4, p^{\alpha}$ o $2p^{\alpha}$, donde $p$ es un primo impar y $\alpha \geq 1.$ Sea $S := (\mathbb{Z}/ m\mathbb{Z})^{\times}$. Demuestre que
+	
+	$$ \prod_{x \in S} x \equiv -1 \Mod{m}. $$
+\end{mybox}	
+$\bullet$  Notamos que para cualquier caso de $m$ existe al menos una raíz primitiva módulo $m$.
+Si $m = 2$, la proposición es cierta, dado que $1 \equiv -1 \Mod{2}$. Para los demás casos, tenemos que $\varphi(m)$ es un número par. Si llamamos $g$ a nuestra raíz primitiva módulo $m$, podemos expresar cualquier elemento $x$ en $S$ como una potencia de $g$:
+$$ x \equiv g^{k} \Mod{m},$$
+donde $1 \leq k \leq \varphi(m)$. Luego, 
+$$ \prod_{x \in S} x \equiv g \cdot \ldots \cdot  g^{\varphi(m)} \equiv g^{\frac{\varphi(m)(\varphi(m) + 1)}{2}} \equiv \left( g^{\frac{\varphi(m)}{2}} \right)^{\varphi(m) + 1} \equiv -1 \Mod{m}.  $$
+En lo anterior,  hemos usado el hecho que $g^{\varphi(m)/2} \equiv -1 \Mod{m}$, que es un caso particular de lo que se demuestra en el $\textbf{ejercicio 15}$ de la sección I. Esto, combinado con el hecho que $\varphi(m) + 1$ es, en este caso, impar, da el resultado deseado. $\hspace{0.2cm} \blacksquare$
+
+\newpage
+\begin{mybox}
+\textbf{22.} Sea $p$ un primo impar. Demuestre que 
+$$ \prod_{x=1}^{\frac{p-1}{2}} x^2 \equiv (-1)^{\frac{p+1}{2}} \Mod{p} .$$
+\end{mybox}	
+
+$\bullet$ Recordamos para $i$ tal que $1 \leq i \leq p -1$, se tiene que
+$$ -i \equiv p - i \Mod{p}. $$
+Así, 
+\begin{equation*}
+\begin{split}
+\prod_{x=1}^{\frac{p-1}{2}} x^2 = 1^2 \cdot \ldots \cdot \left(\frac{p-1}{2} \right)^2 &\equiv (-1)(p-1) \cdot \ldots \cdot \left(-\frac{p-1}{2}\right)\left(\frac{p+1}{2}\right) \Mod{p} \\
+& \equiv (-1)^{(p-1)/2} \cdot 1 \cdot \ldots \cdot (p-1) \Mod{p}.
+\end{split}
+\end{equation*}
+
+Para simplificar el producto anterior, usamos una raíz primitiva $g$ módulo $p$, de forma que
+\begin{equation*}
+\begin{split}
+(-1)^{(p-1)/2} \cdot 1 \cdot \ldots \cdot (p-1) &\equiv (-1)^{(p-1)/2} \cdot g \cdot \ldots \cdot g^{p-1} \Mod{p} \\
+ &\equiv (-1)^{(p-1)/2} g^{(p(p-1)) / 2} \Mod{p} \\
+ & \equiv (-1)^{(p-1)/2} (-1)  \Mod{p} \\
+ & \equiv  (-1)^{(p+1)/2} \Mod{p}. \hspace{0.2cm} \blacksquare 
+\end{split}
+\end{equation*} 
+
+\textbf{Corolario. } Sea $p$ un primo tal que $p \equiv 1 \Mod{4}.$ Entonces, se tiene que
+$$ \left[ \left( \frac{p-1}{2} \right)! \right]^2 \equiv -1 \Mod{p}. $$
+\begin{proof} De la hipótesis deducimos que $\frac{p-1}{2}$ es un número par. Combinando esto con el resultado anterior,
+$$ \left[ \left( \frac{p-1}{2} \right)! \right]^2 \equiv (-1)^{(p-1)/2} (-1) \equiv -1 \Mod{p}. $$
+\end{proof}
+\end{document}
