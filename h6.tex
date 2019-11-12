@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{multicol}
+\usepackage{tabularx}
+\setlength{\tabcolsep}{3pt}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{mybox}
+
+\newcommand{\Mod}[1]{\ \hspace{0.2cm} (\mathrm{m\acute{o}d}\ #1)}
+
+
+\setlength\parindent{0pt}
+
+\newtheorem{definition}{Definición}
+\newtheorem{proposition}{Proposición}
+
+
+
+\setlength\parindent{0pt}
+
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+\date{Jueves 17 de octubre de 2019}
+\title{ \textbf{Teoría de números } \\
+Hoja de ejercicios 6 }
+\author{Docente: Gabriel Chicas Reyes, MSc.\\ 
+				Alumno: Kevin López Aquino }
+\maketitle	
+
+El siguiente lema será de utilidad para los ejercicios 15 y 16.  \\
+
+\textbf{Lema 1. } Sean $m_{1} , \ldots , m_{r}$ enteros positivos. Entonces, para todo $1 \leq i \leq r$
+
+$$ x \equiv y \Mod{m_{i}} $$
+
+si y solo si $$ x \equiv y \Mod{ \text{ mcm} (m_{1}, \ldots, m_{r} ) }. $$
+\begin{proof}
+	$(\Rightarrow)$ Si se tiene $x \equiv y \Mod{m_{i}}$ para $1 \leq i \leq r$, se sigue que para cada $m_{i}$, $m_{i} \mid x - y$, de forma que $x - y$ es un múltiplo común de todos los módulos y, por tanto,
+	$$ \text{mcm}(m_{1}, \ldots , m_{r}) \mid x - y, $$
+	o de forma equivalente, 
+	$$ x \equiv y \Mod{\text{mcm}(m_{1}, \ldots , m_{r})}. $$
+$(\Leftarrow)$ Supongamos que 
+
+$$ x \equiv y \Mod{\text{mcm}(m_{1}, \ldots , m_{r})}. $$
+
+Entonces podemos deducir cada congruencia $x \equiv y \Mod{m_{i}}$, para $1 \leq i \leq r$, debilitando la congruencia original, puesto que $m_{i} \mid \text{mcm}(m_{1}, \ldots , m_{r}).$
+
+\end{proof}
+
+\newpage
+
+\begin{mybox}
+	\textbf{15. } Sea $m = p_{1} \cdot \ldots \cdot p_{r}$ un entero libre de cuadrados. Determine el número de soluciones de la congruencia
+	$$ x^{2} \equiv x \Mod{m}. $$ 
+\end{mybox}	
+
+$\bullet$ Comenzamos con el siguiente lema. \\
+
+$\textbf{Lema 2. }$ Sea $p$ primo. Entonces, 
+
+$$ x^2 \equiv x \Mod{p}$$
+
+ si y solo si $x \equiv 0 \Mod{p}$ o $x \equiv 1 \Mod{p}$. 
+  \begin{proof}
+ 	$(\Rightarrow)$ Supongamos que 
+ 	
+ 	$$ x^2 \equiv x \Mod{p}.$$
+ 	
+ 	De esto se sigue que $p \mid x(x - 1)$. Por el lema de Euclides, o bien $p \mid x$, de forma que $x \equiv 0 \Mod{p}$, o bien $p \mid x -1$, de forma que $x \equiv 1 \Mod{p}$. \\
+ 	
+ 	$(\Leftarrow)$ Si $x$ es congruente con $0$ o con $1$ módulo $p$, se sigue que $x^{2} \equiv x \Mod{p}$.
+ \end{proof}
+
+
+Procedemos al resultado principal.  \\
+
+\textbf{Proposición. } Sea $m = p_{1} \cdot \ldots \cdot p_{r}$ un entero libre de cuadrados. Entonces, la congruencia
+$$ x^{2} \equiv x  \Mod{m}$$
+tiene $2^r$ soluciones distintas módulo $m$.
+\begin{proof}
+	Por el lema anterior, sabemos que para cada primo $p_{i}$ en la factorización de $m$, la congruencia
+	$$ x^2 \equiv x \Mod{p_{i}} $$
+	implica y es implicada por las dos alternativas
+	$$ x \equiv 0 \Mod{p_{i}} \hspace{0.5cm} \text{o} \hspace{0.5cm} x \equiv 1 \Mod{p_{i}} . $$ 
+	
+Así, para cada $p_{i}$ en la factorización de $m$, hay $2$ posibilidades. Puesto que hay $r$ primos distintos en la factorización de $m$, se sigue que hay $2^r$ formas de construir un sistema de $r$ congruencias. \\
+Notando que los módulos en los sistemas de congruencias son coprimos dos a dos, podemos aplicar el teorema chino del resto y deducir que cada sistema de congruencias produce una solución única módulo $p_{1} \cdot \ldots \cdot p_{r} = m.$
+
+\end{proof}
+
+\begin{mybox}
+	\textbf{16. } Encontrar todos los idempotentes módulo $2019.$
+\end{mybox}	
+
+$\bullet$ Aplicamos la idea de la demostración anterior a este caso concreto. Primero notamos que $2019 = 3 \cdot 673$ y que $3$ y $673$ son primos. Podemos formar los siguientes sistemas de congruencias:
+
+\begin{equation}
+\begin{cases} x \equiv 0 \Mod{3} \\ x \equiv 0 \Mod{673} \end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases} x \equiv 1 \Mod{3} \\ x \equiv 1 \Mod{673} \end{cases}
+\end{equation}
+
+
+\begin{equation}
+\begin{cases} x \equiv 1 \Mod{3} \\ x \equiv 0 \Mod{673} \end{cases}
+\end{equation}
+
+
+\begin{equation}
+\begin{cases} x \equiv 0 \Mod{3} \\ x \equiv 1 \Mod{673} \end{cases}
+\end{equation}
+
+Por el teorema chino del resto, cada uno de estos sistemas tiene una única solución módulo $2019$. Por los $\textbf{lemas 1}$ y $\textbf{2}$, si $x$ es la solución de alguno de estos sistemas, se sigue que $x^{2} \equiv x \Mod{2019}$. Además,  estos $4$ sistemas representan todas las soluciones. \\
+
+ La solución al sistema (1) es $x \equiv 0 \Mod{2019}$.  De manera similar, la solución al sistema (2) es $x \equiv 1 \Mod{2019}$. Para el sistema $(3)$, construimos la siguiente tabla, donde $449$ corresponde al inverso multiplicativo de $3$ módulo $673$, encontrado haciendo uso del algoritmo de Euclides. 
+	\begin{table}[h]
+		\begin{center}
+		\begin{tabularx}{0.5\textwidth}{|c |X|X|X|}
+			\hline
+			\cellcolor{green!25} $m_{j}$  & \cellcolor{green!25} $a_{j}$ & \cellcolor{green!25} $m/m_{j}$ & \cellcolor{green!25} $b_{j}$  \\ \hline
+			$3$ & $1$ & $673$ & $1$  \\ \hline
+			$673$ & $0$ & $3$ & $449$  \\ \hline
+		\end{tabularx}
+	\end{center}
+	\end{table}	
+
+Por la fórmula del teorema chino del resto, la solución en este caso es,
+
+$$x \equiv 673 \Mod{2019} .$$
+Para el sistema $(4)$, la tabla es casi igual:
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabularx}{0.5\textwidth}{|c |X|X|X|}
+			\hline
+			\cellcolor{blue!25} $m_{j}$  & \cellcolor{blue!25} $a_{j}$ & \cellcolor{blue!25} $m/m_{j}$ & \cellcolor{blue!25} $b_{j}$  \\ \hline
+			$3$ & $0$ & $673$ & $1$  \\ \hline
+			$673$ & $1$ & $3$ & $449$  \\ \hline
+		\end{tabularx}
+	\end{center}
+\end{table}	
+
+De nuevo, por el teorema chino del resto, la solución es
+
+$$x \equiv 3\cdot 449 \equiv 1347 \Mod{2019} . \hspace{0.4cm} \blacksquare $$
+
+\newpage
+
+\begin{mybox}
+	\textbf{20. } Sean $m$ y $n$ enteros positivos cualesquiera. Sea $d = \text{mcd}(m, n)$. Demuestre la identiddad
+	$$ \varphi(mn) = \frac{d \varphi(m) \varphi(n)}{\varphi(d)} .$$
+	¿Qué sucede si $m$ y $n$ son coprimos?
+\end{mybox}	
+
+$\bullet$ Notamos que si $m$ y $n$ son coprimos
+
+$$ \text{mcd}(m, n) = 1 $$
+$$ \varphi( \text{mcd}(m, n) ) = \varphi(1) = 1 $$
+
+de forma que lo anterior se reduce al hecho que $\varphi(mn) = \varphi(m)\varphi(n)$ cuando $m$ y $n$ son coprimos. De forma más interesante, supongamos que $\varphi(m)\varphi(n) = \varphi(mn)$. Entonces, de la fórmula a demostrar se sigue que 
+
+$$ 1 = \frac{d}{\varphi(d)} $$
+
+$$  \varphi(d) = d .$$
+
+El único número que satisface esta ecuación es $d = 1$. En efecto, si $d \geq 2$, se tiene que $d > \varphi(d)$. De esto se sigue que $m$ y $n$ deben ser coprimos. \\
+
+Veamos un ejemplo. Consideremos $2$ y $10$ y notemos que $\text{mcd}(10, 2) = 2.$ Entonces, 
+
+$$ \varphi(10 \cdot 2) = 10 \cdot 2 \cdot \left( 1 - \frac{1}{2} \right)  \left( 1 - \frac{1}{5} \right)$$
+
+$$ \varphi(10)\varphi(2) = 10 \cdot 2 \cdot  \left( 1 - \frac{1}{2} \right)  \left( 1 - \frac{1}{2} \right)  \left( 1 - \frac{1}{5} \right) $$
+
+$$\varphi(d) = \varphi(2) = 2 \cdot  \left( 1 - \frac{1}{2} \right) $$
+
+Así, se cumple que
+
+$$ \varphi(10 \cdot 2 ) = \frac{2 \cdot  \varphi(10) \cdot \varphi(2)}{ \varphi(2)}. $$
+
+En general,
+
+$$ \frac{\varphi(mn)}{mn} = \prod_{p \mid mn} \left( 1 - \frac{1}{p} \right) = \frac{\frac{1}{m} \prod_{p \mid m} \left( 1 - \frac{1}{p} \right) \cdot \frac{1}{n} \prod_{p \mid n} \left( 1 - \frac{1}{p} \right) }{\frac{1}{\text{mcd}(m, n)} \prod_{p \mid \text{mcd}(m, n)} \left( 1 - \frac{1}{p} \right)} = \frac{\frac{\varphi(m)}{m} \frac{\varphi(n)}{n}}{\frac{\varphi(d)}{d}}.  $$
+
+Así, $\varphi(mn) = \frac{d \varphi(m)\varphi(n)}{\varphi(d)}$. $\blacksquare$
+
+\newpage
+
+\begin{mybox}
+	\textbf{21. } Sea $n \geq 2$. Demuestre que la suma de todos los enteros positivos $1 \leq k \leq n$ coprimos con $n$ vale
+	
+	$$ \frac{1}{2} n \varphi(n) .$$
+\end{mybox}	
+
+$ \bullet $ Primero notamos que para todo $1 \leq k \leq n$,
+
+$$ -k \equiv n - k  \Mod{n}$$
+
+Esto implica que $ \text{mcd}(k, n) = \text{mcd}(-k, n) = \text{mcd}(n -k, n) $. De forma que si $k$ es coprimo con $n$, entonces $n - k$ también será coprimo con $n$. \\
+
+Si $n = 2$, la proposición se cumple. Por otro lado, si $n > 2$, en la suma de los coprimos positivos menores que $n$, podemos formar parejas de enteros de la forma
+$$ k \hspace{0.5cm} \text{y} \hspace{0.5cm} n - k.$$
+
+Cada pareja suma $n$ y hay $\frac{\varphi(n)}{2}$ parejas, por lo que suma total es
+
+$$ \frac{1}{2} n \varphi(n) . \hspace{0.3cm} \blacksquare$$
+
+\end{document}
