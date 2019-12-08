@@ -1,0 +1,291 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=3.5cm]{geometry}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage[colorlinks]{hyperref}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{multicol}
+\usepackage{tabulary}
+\setlength{\tabcolsep}{3pt}
+\decimalpoint
+\theoremstyle{definition}
+
+\definecolor{mycolor2}{rgb}{0.122, 0.435, 0.698}
+\definecolor{mycolor1}{RGB}{46, 139, 87}
+
+\newmdenv[innerlinewidth=1pt, roundcorner=4pt,linecolor=mycolor1,innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{mybox1}
+
+\newmdenv[innerlinewidth=1pt, roundcorner=4pt,linecolor=mycolor2,innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{mybox2}
+
+\newcommand{\Mod}[1]{\ \hspace{0.2cm} (\mathrm{m\acute{o}d}\ #1)}
+
+
+\setlength\parindent{0pt}
+
+\newtheorem{definition}{Definición}
+\newtheorem{proposition}{Proposición}
+
+
+
+\setlength\parindent{0pt}
+
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+\date{Miércoles 13 de noviembre de 2019}
+\title{ \textbf{Teoría de números}  \\
+ Números de Carmichael}
+\author{Docente: Gabriel Chicas Reyes, MSc.\\ 
+				Alumno: Kevin López Aquino }
+
+\maketitle 
+\vspace{0.3cm}
+\section*{I. Introducción}
+\vspace{0.5cm}
+El pequeño teorema de Fermat nos dice que si $p$ es primo y $a$ es un entero tal que $p \nmid a$, se tiene que 
+\begin{equation}
+a^{p-1} \equiv 1 \Mod{p}. 
+\end{equation} 
+De forma equivalente, si $n$ y $a$ son enteros coprimos, y
+$$ a^{n - 1} \not \equiv 1 \Mod{n}, $$
+podemos afirmar que $n$ es un número compuesto. \\
+
+Existen aplicaciones en las que se desea saber si un entero $n$, usualmente de varios dígitos, es primo. Supongamos que $n$ satisface $(1)$ para varios enteros coprimos con $n$. Aunque no podamos afirmar con certeza que $n$ sea primo, existen algoritmos probabilísticos que se basan, al menos inicialmente, en el hecho que esta condición se cumpla. Si esto sucede, $n$ probablemente es primo. De lo contrario, sabemos que $n$ es compuesto. \\
+
+Sin embargo, existen enteros compuestos $n$ que cumplirán $(1)$ sin importar cuántos enteros $a$ coprimos con $n$ se elijan.  V. Šimerka listó los primeros siete en $1885$\footnote{El artículo se encuentra disponible en \href{https://gdz.sub.uni-goettingen.de/id/PPN31311028X_0014}{https://gdz.sub.uni-goettingen.de/id/PPN31311028X$\_$0014}. Los siete números mencionados son listados en la página $224$.}:
+$$561, 1105, \textcolor{blue}{1729}, 2465, 2821, 6601, 8911.$$Estos números tiene propiedades interesantes y se denominan \textbf{números de Carmichael} en honor a Robert Carmichael, quien escribió sobre ellos en $1910$\footnote{R. D. Carmichael, \textit{Note on a New Number Theory Function}, Bulletin Amer. Math. Soc. 16 (1910).}. 
+En lo que sigue, estudiamos sus propiedades básicas. 
+\newpage
+\section*{II. Propiedades}
+\vspace{0.5cm}
+\begin{mybox1}
+	\textbf{Definición 1. } Un  \textbf{número de Carmichael} es un entero compuesto $n$ que cumple que  
+	$$ a^{n-1} \equiv 1 \Mod{n} $$
+	para todo $a$ coprimo con $n$.
+\end{mybox1}	
+\vspace{0.5cm}
+Nuestra primera observación es que todos los números en la lista de Šimerka son impares. Podemos usar la definición para demostrar que esto es cierto para todos los números de Carmichael.  Supongamos que existe un número de Carmichael par y llamémoslo $n$. Notemos que $2$ no es un número de Carmichael, puesto que es primo. Así, $n \geq 4$. En particular, 
+$$ (n-1)^{n-1} \equiv 1 \Mod{n} .$$
+Sin embargo, 
+$$ (n-1)^{n-1} \equiv (-1)^{n-1} \equiv -1 \Mod{n}  ,$$
+de forma que $ 1 \equiv -1 \Mod{n}$, lo cual es absurdo. Por tanto, $n$ debe ser impar. \\
+
+$\bullet$ \textbf{Ejemplo.} $561$ es un número de Carmichael. Para demostrar esto, notamos la factorización $561 = 3 \cdot 11 \cdot 17$ y tomamos un entero arbitrario $a$ coprimo con $561$. Por el pequeño teorema de Fermat, tenemos que
+$$ a^2 \equiv 1 \Mod{3} $$
+$$ a^{10} \equiv 1 \Mod{11} $$
+$$ a^{16} \equiv 1 \Mod{17}. $$
+Notando que $2, 10$ y $16$ dividen a $n - 1 = 560$, se sigue que
+$$ a^{560} \equiv 1 \Mod{3} $$
+$$ a^{560} \equiv 1 \Mod{11} $$
+$$ a^{560} \equiv 1 \Mod{17}. $$
+Además, $\text{mcm}(3, 11, 17) = 3 \cdot 11 \cdot 17 = 561$, de forma que $a^{560} \equiv 1 \Mod{561}$. \hspace{2cm}$\blacksquare$ \\
+
+En el ejemplo anterior, teníamos un número de Carmichael $n$ y notábamos que si $p$ es un factor primo de $n$, se tiene que $p-1 \mid n - 1$. Esto siempre se cumple y fue observado por  A. Korselt en $1899$ cuando demostró\footnote{ A. R. Korselt, \textit{Probl$\grave{e}$me chinois}, L'intermédiaire des mathématiciens  (1899). }, sin dar ejemplos, que los enteros que cumplen con la \textbf{definición 1} se pueden caracterizar de la siguiente forma:
+\newpage
+\begin{mybox2}
+\textbf{Proposición 2 (criterio de Korselt)}.
+	 Un entero compuesto $n$ es un número de Carmichael si y solo si \\	
+	(i) $n$ es libre de cuadrados y \\ 
+	(ii) $p-1 \mid n-1$ para todos los primos $p$ que dividen a $n$.	
+\end{mybox2}	
+\begin{proof}
+$(\Rightarrow)$	 Sea $n$ es un número de Carmichael. \\
+
+$\star$ Primero demostramos  que $n$ es libre de cuadrados. Procedemos por contradicción. 
+Sea $p$ un primo divisor de $n$, de forma que
+$$ n = p^{k} m $$
+donde $k\geq 2$ y $\text{mcd}(p, m) = 1$. En particular, tenemos que $p^{2} \mid n.$ Sea $g$ una raíz primitiva módulo $p^2$. Notamos que $\text{mcd}(p^2, m) = 1$, de forma que podemos usar el teorema chino del resto para garantizar la existencia de un entero $b$ que cumple
+$$\hspace{0.6cm} b \equiv g \Mod{p^2} $$
+$$\text{y} \hspace{0.5cm} b \equiv 1 \Mod{m} .$$
+De lo anterior, notamos que $b$ es una raíz primitiva módulo $p^2$, de forma que $\text{mcd}(b, p^2) = 1$ y $\text{mcd}(b, p^k) = 1$. Además, $\text{mcd}(b, m) = \text{mcd}(1, m) = 1$, de lo que se sigue que $\text{mcd}(b, n) = 1.$ Puesto que $n$ es un número de Carmichael, tenemos
+$$ b^{n-1} \equiv 1 \Mod{n}, $$
+de donde
+ $$ b^{n-1} \equiv 1 \Mod{p ^2}. $$
+ Puesto que $b$ es una raíz primitiva módulo $p^2$, se sigue que $$ \text{ord}_{p^2}(b) =  p(p - 1) \mid n - 1, $$
+ de lo que deducimos que $p \mid n -1$. Pero $p \mid n$, de lo que podemos concluir que $n - 1$ y $n$ tienen a $p$ como divisor común, contradiciendo el hecho que son coprimos. La contradicción proviene de la asunción que $n$ es un número de Carmichael y divisible por algún cuadrado. Por tanto, si $n$ es un número de Carmichael, debe ser libre de cuadrados. \\
+ 
+ $\star$ Sea $p$ un divisor primo de $n$.  Ahora demostramos que $p-1 \mid n-1$. Por la parte anterior, podemos escribir $ n = pm $, donde $\text{mcd}(p, m) = 1.$ Sea $g$ una raíz primitiva módulo $p$. Por el teorema chino del resto, existe un entero $b$ tal que
+ $$\hspace{0.6cm} b \equiv g \Mod{p} $$
+ $$\text{y} \hspace{0.5cm} b \equiv 1 \Mod{m} .$$
+ Notamos que $b$ es coprimo con $n$, por lo que $b^{n-1} \equiv 1 \Mod{n}$ y que  $b^{n-1}\equiv 1 \Mod{p}$. Por tanto, $p  - 1 \mid n - 1.$ \\
+ 
+ $(\Leftarrow)$ Ahora supongamos que $n = p_{1} p_{2} \ldots p_{r}$ y que $p_{j} - 1 \mid n  - 1$ para $1 \leq j \leq r.$ Sea $a$ coprimo con $n$. Por el pequeño teorema de Fermat, tenemos que 
+ $$ a^{p_{j} - 1} \equiv 1 \Mod{p_{j}}, $$
+de forma que
+ $$ a^{n - 1} \equiv 1 \Mod{p_{j}}, $$
+ para $1 \leq j \leq r.$ Notando que $\text{mcm}(p_{1}, \ldots, p_{r}) = p_{1} \ldots p_{r} =  n$, se sigue que
+ $$ a^{n-1} \equiv 1 \Mod{n}. $$
+\end{proof}
+
+Una forma alternativa de alcanzar una contradicción al demostrar que un número de Carmichael es libre de cuadrados, es notar que si 
+$$ n = p^{k}m, $$
+donde $k \geq 2$ y $\text{mcd}(p, m) = 1$, se sigue, usando el teorema chino del resto de nuevo, que existe un $b$ tal que
+$$\hspace{1.2cm} b \equiv 1+ p \Mod{p^2} $$
+$$\text{y} \hspace{0.5cm} b \equiv 1 \Mod{m} .$$
+Entonces, $\text{mcd}(b, n) = 1$, de forma que $b^{n-1} \equiv 1 \Mod{n}$. Debilitando la congruencia, obtenemos que
+$$ (1 + p)^{n-1} \equiv 1 \Mod{p^2} .$$
+Pero
+\begin{equation*}
+\begin{split}
+(1 + p)^{n-1} = \sum_{k=0}^{n-1} \binom{n-1}{k} p^{k} &= 1 + (n-1)p + \ldots + (n-1)p^{n-2} + p^{n-1}  \\
+&\equiv 1 + (n-1)p \Mod{p^{2}} \\
+&\equiv 1 - p \Mod{p^{2}}.
+\end{split}
+\end{equation*}
+Así, $ 1  \equiv 1 - p \Mod{p^{2}} $, lo cual es absurdo. 
+\vspace{0.3cm}
+\begin{mybox2}
+\textbf{Corolario 3. } Sea $n$ impar y sean $p_{1}, \ldots , p_{r}$ primos distintos. Un entero  \\ $n = p_{1} \ldots p_{r}$ es un número de Carmichael si y solo si $$\lambda := \text{mcm}(p_{1} - 1, \ldots, p_{r} - 1) \mid n - 1 .$$
+\end{mybox2}	
+\begin{proof}
+	Por hipótesis, $n$ es libre de cuadrados. Entonces, 
+	$$ \text{$n$ es un número de Carmichael} \iff p_{i} - 1 \mid n - 1 \hspace{0.2cm}\text{para} \hspace{0.2cm} 1 \leq i \leq r \iff \lambda \mid n - 1.$$ 
+\end{proof}
+
+\begin{mybox2}
+	\textbf{Proposición 4. } Un entero $n$ es un número de Carmichael si y solo si $n$ es compuesto y $a^n \equiv a \Mod{n}$ para todo $a \in \mathbb{Z}$.
+\end{mybox2}	
+\begin{proof}
+	$(\Rightarrow)$ Sea $n = p_{1} p_{2} \ldots p_{r}$ un número de Carmichael y $a$ un entero arbitrario. Primero demostramos que
+	$$ a^{n} \equiv a \Mod{p_{i}} $$
+	para $1 \leq i \leq r.$ Por el pequeño teorema de Fermat, tenemos que 
+	$$ a^{p_{i}} \equiv a \Mod{p_{i}} .$$ 
+	A partir de esto, consideramos dos casos. \\
+	
+	\textit{Caso I. } $p_{i} \mid a$. Entonces, se sigue que
+	$$ a^{n} \equiv a \equiv 0 \Mod{p_{i}} .$$
+	\textit{Caso II. } $p_{i} \nmid a .$ Entonces, 
+	$$ a^{p_{i} - 1} \equiv 1 \Mod{p_{i}}. $$
+	Pero $p_{i} - 1 \mid n - 1$, de forma que
+	$$ a^{n - 1} \equiv 1 \Mod{p_{i}}. $$
+	Multiplicando por $a$ ambos lados de la congruencia, obtenemos que $a^{n} \equiv a \Mod{p_{i}}$. Ahora notamos que $\text{mcm}(p_{1}, p_{2}, \ldots , p_{r}) = n$, de lo que se sigue que $a^{n} \equiv a \Mod{n}$. \\
+	
+	$(\Leftarrow)$ Sea $a$ coprimo con $n$. Entonces, podemos cancelar $a$ de la congruencia $a^{n} \equiv a \Mod{n}$, de forma que $ a^{n-1} \equiv 1 \Mod{n}$.
+\end{proof}
+\vspace{0.5cm}
+Si $p$ es un número primo, se tiene el interesante resultado
+$$ (a + b)^{p} \equiv a^{p} + b^{p} \Mod{p} $$
+para cualesquiera enteros $a$ y $b$\footnote{Esto tiene un agradable parecido con el \textit{freshman's dream}: asumir, erróneamente, que  $  (x + y)^{n} = x^n + y^n$ cuando $n$ es un número natural  y $x, y$ son reales arbitrarios. } .  Esta congruencia también se cumple  si $n$ es un número de Carmichael. En efecto, si $a$ y $b$ son enteros arbitrarios, la proposición anterior implica que
+
+$$ (a + b)^{n} \equiv a + b \equiv a^{n} + b^{n} \Mod{n}.$$
+
+\newpage
+
+\begin{table}[h]
+\centering
+	\begin{tabulary}{0.9\textwidth}{| C| C|C|}
+		\hline
+		$n$  & $n$-ésimo número de Carmichael & Factorización en primos \\ \hline
+		
+		$1$ &  $561$  & $3 \cdot 11 \cdot 17$ \\ \hline
+		
+		$2$ & $1105$  & $5 \cdot 13 \cdot 17$  \\ \hline
+		
+		$3$ &  $1729$  & $7 \cdot 13 \cdot 19$ \\ \hline
+		
+		$4$ & $2465$  & $5 \cdot 17 \cdot 29$  \\ \hline
+		
+		$5$ & $2821$  & $7 \cdot 13 \cdot 31$  \\ \hline
+		
+		$6$ & $6601$  & $7 \cdot 23 \cdot 41$  \\ \hline
+		
+		$7$ & $8911$  & $7 \cdot 19 \cdot 67$  \\ \hline
+		
+		$8$ & $10585$  & $5 \cdot 29 \cdot 73$  \\ \hline
+		
+		$9$ & $15841$  & $7 \cdot 31 \cdot 73$  \\ \hline
+		
+		$10$ & $29341$  & $13 \cdot 37 \cdot 61$  \\ \hline
+		
+		$11$ & $41041$  &\cellcolor{green!25} $7 \cdot 11 \cdot 13 \cdot 41$  \\  \hline
+
+		$12$ & $46657$  & $13 \cdot 37 \cdot 97$   \\  \hline
+
+	$13$ & $52663$  & $7 \cdot 73 \cdot 103$   \\  \hline
+
+	$14$ & $62745$  & $7 \cdot 5 \cdot 47 \cdot 89$   \\  \hline
+
+	$15$ & $63973$  & $7 \cdot 13 \cdot 19 \cdot 37$   \\  \hline
+
+	$16$ & $75361$  & $11 \cdot 13 \cdot 17 \cdot 31$   \\  \hline
+
+	$17$ & $10101$  & $7 \cdot 11 \cdot 13 \cdot 101$   \\  \hline
+
+	$18$ & $115921$  & $13 \cdot 37 \cdot 141$   \\  \hline
+	
+	$19$ & $126217$  & $7 \cdot 13 \cdot 19 \cdot 73$   \\  \hline
+	
+	$20$ & $162401$  & $17 \cdot 41 \cdot 233$   \\  \hline
+
+	\end{tabulary}
+\caption*{\textbf{Tabla I. } Los primeros veinte números de Carmichael (sucesión \href{https://oeis.org/A002997}{A002997} en OEIS) y su factorización en primos.  }
+\end{table}	
+
+	En los datos anteriores, podemos notar que los primeros números de Carmichael son el producto de al menos $3$ primos distintos. Esto resulta ser, en general, verdadero. 
+	
+\begin{mybox2}
+\textbf{Proposición 4.} Todo número de Carmichael es el producto de al menos tres primos distintos. 
+\end{mybox2}		 
+\begin{proof}
+Argumentamos por contradicción. Sea $n = pq$ un número de Carmichael, donde $p$ y $q$ son primos distintos. Supongamos, sin pérdida de generalidad, que $p > q$. Entonces, $ p -1 > q - 1$. Puesto que $n$ es un número de Carmichael, tenemos que
+$$ n - 1 \equiv 0 \Mod{p-1} .$$	
+Sin embargo,
+$$ n -1 \equiv pq - 1 \equiv (p - 1 + 1)q - 1 \equiv q - 1 \Mod{p-1},  $$
+de forma que $q - 1 \equiv 0 \Mod{p-1}.$ Esto es absurdo, en vista que \newline $1 < q-1 < p - 1$.
+\end{proof}
+\vspace{0.5cm}
+Notamos  que si $n$ es un número de Carmichael, no existen raíces primitivas en $(\mathbb{Z} / n \mathbb{Z})^{\times}$: siendo $n$ un número impar, libre de cuadrados y compuesto por al menos $3$ factores primos distintos, no puede ser de ninguna de las formas $2, 4, p^{\alpha}$ o $2 p^{\alpha}$ con $p$ primo impar. 
+
+\newpage
+
+Si $n$ es un número compuesto, sabemos que $n$ tiene al menos un divisor primo $p$ que cumple que $ p \leq \sqrt{n}$.  Tomemos como ejemplo $28 = 7 \cdot 2^2$. Tenemos que $\sqrt{28} \approx 5.29$, $2 < \sqrt{28}$, pero $7 > \sqrt{28}$. Todo lo que sabemos es que \textit{al menos} un divisor primo cumple con esto. Si $n$ es un número de Carmichael, podemos decir más. 
+\begin{mybox2}
+	\textbf{Proposición 6. } Si $n$ es un número de Carmichael, se tiene que $p < \sqrt{n}$ para todo divisor primo $p$ de $n$. 
+\end{mybox2}	
+\begin{proof}
+	Tenemos que  
+	$$ n - 1 \equiv 0 \Mod{p -1}, $$
+	de forma que 
+\begin{equation*}
+\begin{split}
+0\equiv n - 1 \equiv \left( \frac{n}{p} \right)p - 1& \equiv \left( \frac{n}{p}\right)p - \frac{n}{p} + \frac{n}{p}  - 1 \Mod{p - 1} \\
+& \equiv \left( \frac{n}{p} \right) (p - 1) + \frac{n}{p} - 1 \Mod{p - 1} \\
+&\equiv \frac{n}{p} - 1 \Mod{p - 1},   
+\end{split}
+\end{equation*}	
+de lo que deducimos que $p - 1 \mid \frac{n}{p} - 1$. Por tanto, $ p \leq \frac{n}{p}$. La desigualdad debe ser estricta: de lo contrario $n$ sería un cuadrado. Así, concluimos que $p < \sqrt{n}$.
+\end{proof}
+
+En $1939$, J. Chernick mostró una forma de construir un subconjunto de los números de Carmichael. En particular, se tiene el...
+\begin{mybox2}
+\textbf{Proposición 5. } Sea $k$ un entero tal que $6k + 1$, $12k + 1$ y $18k + 1$ son primos. Entonces, 
+$n = (6k + 1)(18k+1)(36k + 1)$
+es un número de Carmichael. 
+\end{mybox2}		
+\begin{proof}
+	Verificamos que $n$ satisface las condiciones del criterio de Korselt. Sean 
+	$$ p_{1} := 6k + 1 $$
+	$$ p_{2} := 12k + 1 $$
+	$$ p_{3} := 18k + 1 .$$
+	Primero notamos que $n$ es, en efecto, libre de cuadrados: su factorización es $n = p_{1} p_{2} p_{3}$ y $p_{1}, p_{2}, p_{3}$ son, por hipótesis, primos distintos. Para comprobar la segunda condición del criterio de Korselt, calculamos $n - 1$:
+\begin{equation*}
+\begin{split}
+n - 1 &= (6k + 1)(18k + 1)(36k + 1) - 1 \\
+&= (6 \cdot 18 k^2 + 24k + 1)(36k + 1) - 1 \\
+&= 6\cdot 18 \cdot 36 k^3 + 24 \cdot 36 k^2 + 1 - 1 \\
+& = 36k(6 \cdot 18 k^2 +  24k).
+\end{split}
+\end{equation*}
+De lo anterior, podemos notar que $n - 1$ es divisible entre $p_{1} - 1$, $p_{2} - 1$ y $p_{3} - 1$. Por tanto, $n$ es un número de Carmichael. 
+\end{proof}
+\section*{ III. Referencias}
+
+\end{document}
