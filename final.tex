@@ -40,7 +40,7 @@ innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt]{mybox2}
 \renewcommand{\headrulewidth}{0.4pt}
 
 \begin{document}
-\date{Miércoles 13 de noviembre de 2019}
+\date{Domingo 8 de diciembre de 2019}
 \title{ \textbf{Teoría de números}  \\
  Números de Carmichael}
 \author{Docente: Gabriel Chicas Reyes, MSc.\\ 
@@ -58,13 +58,13 @@ De forma equivalente, si $n$ y $a$ son enteros coprimos, y
 $$ a^{n - 1} \not \equiv 1 \Mod{n}, $$
 podemos afirmar que $n$ es un número compuesto. \\
 
-Existen aplicaciones en las que se desea saber si un entero $n$, usualmente de varios dígitos, es primo. Supongamos que $n$ satisface $(1)$ para varios enteros coprimos con $n$. Aunque no podamos afirmar con certeza que $n$ sea primo, existen algoritmos probabilísticos que se basan, al menos inicialmente, en el hecho que esta condición se cumpla. Si esto sucede, $n$ probablemente es primo. De lo contrario, sabemos que $n$ es compuesto. \\
+Existen aplicaciones en las que se desea saber si un entero $n$, usualmente \textit{grande}, es primo. Supongamos que $n$ satisface $(1)$ para varios enteros coprimos con $n$. Aunque no podamos afirmar con certeza que $n$ sea primo, existen algoritmos probabilísticos que se basan, al menos inicialmente, en el hecho que esta condición se cumpla. Si esto sucede, $n$ probablemente es primo. De lo contrario, sabemos que $n$ es compuesto. \\
 
-Sin embargo, existen enteros compuestos $n$ que cumplirán $(1)$ sin importar cuántos enteros $a$ coprimos con $n$ se elijan.  V. Šimerka listó los primeros siete en $1885$\footnote{El artículo se encuentra disponible en \href{https://gdz.sub.uni-goettingen.de/id/PPN31311028X_0014}{https://gdz.sub.uni-goettingen.de/id/PPN31311028X$\_$0014}. Los siete números mencionados son listados en la página $224$.}:
-$$561, 1105, \textcolor{blue}{1729}, 2465, 2821, 6601, 8911.$$Estos números tiene propiedades interesantes y se denominan \textbf{números de Carmichael} en honor a Robert Carmichael, quien escribió sobre ellos en $1910$\footnote{R. D. Carmichael, \textit{Note on a New Number Theory Function}, Bulletin Amer. Math. Soc. 16 (1910).}. 
+Sin embargo, existen enteros compuestos $n$ que cumplirán $(1)$ sin importar cuántos enteros $a$ coprimos con $n$ se elijan.  V. Šimerka listó los primeros siete en $1885$\footnote{Václav Šimerka, \textit{Zbytky z arithmetické posloupnosti,} Časopis pro pěstování mathematiky a fysiky  \textbf{14} (1885), p. 224 . Disponible \href{https://gdz.sub.uni-goettingen.de/id/PPN31311028X_0014}{aquí}. }:
+$$561, 1105, \textcolor{blue}{1729}, 2465, 2821, 6601, 8911.$$Estos números tiene propiedades interesantes y se denominan \textbf{números de Carmichael} en honor a Robert Carmichael, quien escribió sobre ellos en sus artículos de $1910$\footnote{R. D. Carmichael, \textit{Note on a new number theory function}, Bulletin Amer. Math. Soc. \textbf{16} (1910). Disponible \href{https://pdfs.semanticscholar.org/1265/8f32cfd22044bb64c9b32f33fe16b4790384.pdf}{aquí}.} y $1912$\footnote{R. D. Carmichael, \textit{On composite $P$ which  satisfy the Fermat congruence $a^{P-1} \equiv 1 \Mod{P}$ }, Bulletin Amer. Math. Monthly \textbf{19} (1912). Disponible \href{https://www.jstor.org/stable/2972687?seq=3\#metadata_info_tab_contents}{aquí}.}. 
 En lo que sigue, estudiamos sus propiedades básicas. 
 \newpage
-\section*{II. Propiedades}
+\section*{II. Resultados}
 \vspace{0.5cm}
 \begin{mybox1}
 	\textbf{Definición 1. } Un  \textbf{número de Carmichael} es un entero compuesto $n$ que cumple que  
@@ -115,8 +115,8 @@ de donde
  $\star$ Sea $p$ un divisor primo de $n$.  Ahora demostramos que $p-1 \mid n-1$. Por la parte anterior, podemos escribir $ n = pm $, donde $\text{mcd}(p, m) = 1.$ Sea $g$ una raíz primitiva módulo $p$. Por el teorema chino del resto, existe un entero $b$ tal que
  $$\hspace{0.6cm} b \equiv g \Mod{p} $$
  $$\text{y} \hspace{0.5cm} b \equiv 1 \Mod{m} .$$
- Notamos que $b$ es coprimo con $n$, por lo que $b^{n-1} \equiv 1 \Mod{n}$ y que  $b^{n-1}\equiv 1 \Mod{p}$. Por tanto, $p  - 1 \mid n - 1.$ \\
- 
+ Notamos que $b$ es coprimo con $n$, por lo que $b^{n-1} \equiv 1 \Mod{n}$ y que  $b^{n-1}\equiv 1 \Mod{p}$. Por tanto, $p  - 1 \mid n - 1.$ 
+ \newpage
  $(\Leftarrow)$ Ahora supongamos que $n = p_{1} p_{2} \ldots p_{r}$ y que $p_{j} - 1 \mid n  - 1$ para $1 \leq j \leq r.$ Sea $a$ coprimo con $n$. Por el pequeño teorema de Fermat, tenemos que 
  $$ a^{p_{j} - 1} \equiv 1 \Mod{p_{j}}, $$
 de forma que
@@ -127,7 +127,7 @@ de forma que
 
 Una forma alternativa de alcanzar una contradicción al demostrar que un número de Carmichael es libre de cuadrados, es notar que si 
 $$ n = p^{k}m, $$
-donde $k \geq 2$ y $\text{mcd}(p, m) = 1$, se sigue, usando el teorema chino del resto de nuevo, que existe un $b$ tal que
+donde $k \geq 2$ y $\text{mcd}(p, m) = 1$, se sigue, usando el teorema chino del resto, que existe un $b$ tal que
 $$\hspace{1.2cm} b \equiv 1+ p \Mod{p^2} $$
 $$\text{y} \hspace{0.5cm} b \equiv 1 \Mod{m} .$$
 Entonces, $\text{mcd}(b, n) = 1$, de forma que $b^{n-1} \equiv 1 \Mod{n}$. Debilitando la congruencia, obtenemos que
@@ -166,7 +166,9 @@ Así, $ 1  \equiv 1 - p \Mod{p^{2}} $, lo cual es absurdo.
 	$$ a^{p_{i} - 1} \equiv 1 \Mod{p_{i}}. $$
 	Pero $p_{i} - 1 \mid n - 1$, de forma que
 	$$ a^{n - 1} \equiv 1 \Mod{p_{i}}. $$
-	Multiplicando por $a$ ambos lados de la congruencia, obtenemos que $a^{n} \equiv a \Mod{p_{i}}$. Ahora notamos que $\text{mcm}(p_{1}, p_{2}, \ldots , p_{r}) = n$, de lo que se sigue que $a^{n} \equiv a \Mod{n}$. \\
+	Multiplicando por $a$ ambos lados de la congruencia, obtenemos que $a^{n} \equiv a \Mod{p_{i}}$.  \\
+	
+	Ahora notamos que $\text{mcm}(p_{1}, p_{2}, \ldots , p_{r}) = n$, de lo que se sigue que $a^{n} \equiv a \Mod{n}$. \\
 	
 	$(\Leftarrow)$ Sea $a$ coprimo con $n$. Entonces, podemos cancelar $a$ de la congruencia $a^{n} \equiv a \Mod{n}$, de forma que $ a^{n-1} \equiv 1 \Mod{n}$.
 \end{proof}
@@ -232,21 +234,22 @@ $$ (a + b)^{n} \equiv a + b \equiv a^{n} + b^{n} \Mod{n}.$$
 	En los datos anteriores, podemos notar que los primeros números de Carmichael son el producto de al menos $3$ primos distintos. Esto resulta ser, en general, verdadero. 
 	
 \begin{mybox2}
-\textbf{Proposición 4.} Todo número de Carmichael es el producto de al menos tres primos distintos. 
+\textbf{Proposición 5.} Todo número de Carmichael es el producto de al menos tres primos distintos. 
 \end{mybox2}		 
 \begin{proof}
 Argumentamos por contradicción. Sea $n = pq$ un número de Carmichael, donde $p$ y $q$ son primos distintos. Supongamos, sin pérdida de generalidad, que $p > q$. Entonces, $ p -1 > q - 1$. Puesto que $n$ es un número de Carmichael, tenemos que
 $$ n - 1 \equiv 0 \Mod{p-1} .$$	
 Sin embargo,
 $$ n -1 \equiv pq - 1 \equiv (p - 1 + 1)q - 1 \equiv q - 1 \Mod{p-1},  $$
-de forma que $q - 1 \equiv 0 \Mod{p-1}.$ Esto es absurdo, en vista que \newline $1 < q-1 < p - 1$.
+de forma que $q - 1 \equiv 0 \Mod{p-1}.$ Esto implica que $p -1 < q - 1$, lo cual es una contradicción. Por tanto, $n$, siendo un número de Carmichael, no puede estar compuesto solo de dos factores. 
 \end{proof}
-\vspace{0.5cm}
+\vspace{0.3cm}
 Notamos  que si $n$ es un número de Carmichael, no existen raíces primitivas en $(\mathbb{Z} / n \mathbb{Z})^{\times}$: siendo $n$ un número impar, libre de cuadrados y compuesto por al menos $3$ factores primos distintos, no puede ser de ninguna de las formas $2, 4, p^{\alpha}$ o $2 p^{\alpha}$ con $p$ primo impar. 
 
 \newpage
 
-Si $n$ es un número compuesto, sabemos que $n$ tiene al menos un divisor primo $p$ que cumple que $ p \leq \sqrt{n}$.  Tomemos como ejemplo $28 = 7 \cdot 2^2$. Tenemos que $\sqrt{28} \approx 5.29$, $2 < \sqrt{28}$, pero $7 > \sqrt{28}$. Todo lo que sabemos es que \textit{al menos} un divisor primo cumple con esto. Si $n$ es un número de Carmichael, podemos decir más. 
+Si $n$ es un número compuesto, sabemos que tiene al menos un divisor primo $p$ que cumple que $ p \leq \sqrt{n}$.  Tomemos como ejemplo $28 = 7 \cdot 2^2$. Tenemos que $\sqrt{28} \approx 5.29$, $2 < \sqrt{28}$, pero $7 > \sqrt{28}$. Todo lo que sabemos es que \textit{al menos} un divisor primo cumple con esto. Si $n$ es un número de Carmichael, podemos decir más. 
+\vspace{0.3cm} 
 \begin{mybox2}
 	\textbf{Proposición 6. } Si $n$ es un número de Carmichael, se tiene que $p < \sqrt{n}$ para todo divisor primo $p$ de $n$. 
 \end{mybox2}	
@@ -264,9 +267,10 @@ Si $n$ es un número compuesto, sabemos que $n$ tiene al menos un divisor primo 
 de lo que deducimos que $p - 1 \mid \frac{n}{p} - 1$. Por tanto, $ p \leq \frac{n}{p}$. La desigualdad debe ser estricta: de lo contrario $n$ sería un cuadrado. Así, concluimos que $p < \sqrt{n}$.
 \end{proof}
 
-En $1939$, J. Chernick mostró una forma de construir un subconjunto de los números de Carmichael. En particular, se tiene el...
+En su artículo\footnote{J. Chernick, \textit{On Fermat’s simple theorem}, Bull. Amer. Math. Soc.  \textbf{45} (1939). Disponible \href{https://projecteuclid.org/download/pdf_1/euclid.bams/1183501763}{aquí}. } de $1939$, J. Chernick mostró formas de construir números de Carmichael. Presentamos la más popular (la que ha llegado a los libros de texto) a continuación. 
+\vspace{0.3cm}
 \begin{mybox2}
-\textbf{Proposición 5. } Sea $k$ un entero tal que $6k + 1$, $12k + 1$ y $18k + 1$ son primos. Entonces, 
+\textbf{Proposición 7. } Sea $k$ un entero tal que $6k + 1$, $12k + 1$ y $18k + 1$ son primos. Entonces, 
 $n = (6k + 1)(18k+1)(36k + 1)$
 es un número de Carmichael. 
 \end{mybox2}		
@@ -278,14 +282,34 @@ es un número de Carmichael.
 	Primero notamos que $n$ es, en efecto, libre de cuadrados: su factorización es $n = p_{1} p_{2} p_{3}$ y $p_{1}, p_{2}, p_{3}$ son, por hipótesis, primos distintos. Para comprobar la segunda condición del criterio de Korselt, calculamos $n - 1$:
 \begin{equation*}
 \begin{split}
-n - 1 &= (6k + 1)(18k + 1)(36k + 1) - 1 \\
-&= (6 \cdot 18 k^2 + 24k + 1)(36k + 1) - 1 \\
-&= 6\cdot 18 \cdot 36 k^3 + 24 \cdot 36 k^2 + 1 - 1 \\
-& = 36k(6 \cdot 18 k^2 +  24k).
+n - 1 &= (6k + 1)(12k + 1)(18k + 1) - 1 \\
+&= (6 \cdot 12 k^2 + 18k + 1)(18k + 1) - 1 \\
+&= 6\cdot 12 \cdot 18 k^3 + (6 \cdot 12 + 18^2) k^2 + 2 \cdot 18 k + 1 - 1 \\
+& = 18k(6 \cdot 12 k^2 + 22k + 2 ).
 \end{split}
 \end{equation*}
 De lo anterior, podemos notar que $n - 1$ es divisible entre $p_{1} - 1$, $p_{2} - 1$ y $p_{3} - 1$. Por tanto, $n$ es un número de Carmichael. 
 \end{proof}
-\section*{ III. Referencias}
+\newpage
+
+A pesar que los números de Carmichael se seguían estudiando a lo largo del siglo XX, no fue hasta $1994$ que se demostró, en un artículo\footnote{W.R. Alford, Andrew Granville y Carl Pomerance, \textit{There are infinitely many
+		Carmichael numbers}, Annals of Math. \textbf{140} (1994), 703-722.} dedicado a Paul Erdős por su octogésimo cumpleaños, el siguiente resultado. 
+\begin{mybox2}
+	\textbf{Teorema 8 (Alford, Granville y Pomerance).} 
+	\begin{center}Existen infinitos números de Carmichael. \end{center} 
+\vspace{0.1cm}
+\end{mybox2}	
+\begin{proof}
+El artículo se encuentra disponible  \href{https://dms.umontreal.ca/~andrew/PDF/carmichael.pdf}{aquí}.
+\end{proof}
+\section*{III. Referencias}
+\textbf{[1]} Noel Koblitz, \textit{A Course in Number Theory and Cryptography}. \textit{Graduate Texts in Mathematics}, Springer-Verlag (1987), capítulo V, sección 1.\\
+
+\textbf{[2]} Keith Conrad, \textit{Carmichael Numbers and Korselt's Criterion.} Recuperado de \\ \href{https://kconrad.math.uconn.edu/blurbs/ugradnumthy/carmichaelkorselt.pdf}{https://kconrad.math.uconn.edu/blurbs/ugradnumthy/carmichaelkorselt.pdf}.\\
+
+\textbf{[3]} Andrew Granville, \textit{Primality Testing and Carmichael Numbers.}  Recuperado de  \\
+\href{https://dms.umontreal.ca/~andrew/PDF/Notices1.pdf}{https://dms.umontreal.ca/~andrew/PDF/Notices1.pdf}.
+
+
 
 \end{document}
